@@ -12,7 +12,7 @@ dotenv.config();
 
 // Cria uma instância do aplicativo Express
 const app = express();
-
+const port = 5000;
 // Middleware para analisar o corpo da requisição como JSON
 app.use(express.json());
 
@@ -20,14 +20,15 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Configuração do CORS para permitir solicitações de um cliente específico
-app.use(
-  cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
-  })
-);
+// app.use(
+//   cors({
+//     origin: 'http://localhost:5173',
+//     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//     allowedHeaders: ['Content-Type'],
+//   })
+// );
 
+app.listen(process.env.PORT || port, console.log("connected to port:" + process.env.PORT || port ));
 // Middleware CORS para permitir solicitações de qualquer origem
 app.use(cors());
 
