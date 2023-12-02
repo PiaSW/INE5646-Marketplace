@@ -93,6 +93,7 @@ export const Auth= () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [_, setCookies] = useCookies(["access_token"]);
+  const navigate = useNavigate();
 
 
   // Obtém a função de login do hook de autenticação
@@ -121,7 +122,7 @@ export const Auth= () => {
       setEmail(''); // Limpa o estado do e-mail
       setPassword(''); // Limpa o estado da senha
       
-      window.location.href = '/INE5646-Marketplace'; // Redireciona o usuário para a página inicial
+      navigate('/INE5646-Marketplace'); // Redireciona o usuário para a página inicial
 
     } catch (error) {
       alert('Password Incorreta'); // Exibe um alerta para senha incorreta
