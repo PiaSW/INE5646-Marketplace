@@ -1,0 +1,1 @@
+export const BACKEND_URL = "https://grumpy-petticoat-fly.cyclic.app"

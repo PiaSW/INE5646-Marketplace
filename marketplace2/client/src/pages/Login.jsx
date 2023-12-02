@@ -3,7 +3,7 @@ import axios from '../api/axios'
 import { useState } from 'react';
 import { useAuth } from '../AuthProvider/AuthContext';
 import { useCookies } from "react-cookie";
-
+import BACKEND_URL from "../constants";
 
 export const Login = () => {
   // Estados locais para controlar os campos do formulário
@@ -25,7 +25,7 @@ export const Login = () => {
       //login(email, password);
       try {
         // Faz uma chamada de API para autenticação
-        const response = await axios.post('http://localhost:5555/auth/login', { email, password }, {
+        const response = await axios.post(BACKEND_URL + '/auth/login', { email, password }, {
           headers: { "Content-Type": 'application/json' },
         });
   

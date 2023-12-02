@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useAuth } from '../AuthProvider/AuthContext';
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import { BACKEND_URL } from '../constants';
 
 export const Auth= () => {
   return(
@@ -32,7 +33,7 @@ export const Auth= () => {
       // Chama a função de registro passando nome, e-mail e senha
       try {
         // Faz uma chamada de API para registrar um novo usuário
-        await axios.post('http://localhost:5555/auth/register', { name, email, password }, {
+        await axios.post( BACKEND_URL + '/auth/register', { name, email, password }, {
           headers: { "Content-Type": 'application/json' },
         });
         alert("Usuario registado com sucesso!")
@@ -110,7 +111,7 @@ export const Auth= () => {
       //login(email, password);
       try {
         // Faz uma chamada de API para autenticação
-        const response = await axios.post('http://localhost:5555/auth/login', { email, password }, {
+        const response = await axios.post( BACKEND_URL + '/auth/login', { email, password }, {
           headers: { "Content-Type": 'application/json' },
         });
   

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './RegisterProducts.css'
 import DisplayProduct from '../components/DisplayProduct';
 import axios from 'axios';
-
+import BACKEND_URL from '../constants';
 export const RegisterProducts = () => {
   // Estados locais para armazenar dados do formulário
   const [file, setFile] = useState([]);
@@ -72,7 +72,7 @@ export const RegisterProducts = () => {
     };
 
     // Chamada da API para registrar o produto
-    await axios.post('http://localhost:5555/products/', { data }, {
+    await axios.post(BACKEND_URL + '/products/', { data }, {
       headers: { "Content-Type": 'application/json' },
     })
       .then((response) => {
