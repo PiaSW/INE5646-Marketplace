@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from "axios";
 import { useState } from 'react';
-import { useAuth } from '../AuthProvider/AuthContext';
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from '../constants';
@@ -21,10 +20,6 @@ export const Auth= () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const navigate = useNavigate();
-
-  // Obtém a função de registro do hook de autenticação
-  //const { register } = useAuth();
 
   // Função chamada ao enviar o formulário
   const handleRegister = async (e) => {
@@ -97,6 +92,8 @@ export const Auth= () => {
   // Estados locais para controlar os campos do formulário
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [_, setCookies] = useCookies(["access_token"]);
+
 
   // Obtém a função de login do hook de autenticação
   //const { login } = useAuth();
@@ -115,8 +112,8 @@ export const Auth= () => {
           headers: { "Content-Type": 'application/json' },
         });
   
-        setCookies("access_token", result.data.token);
-        window.localStorage.setItem("userID", result.data.userID);
+        setCookies("access_token", response.data.token);
+        window.localStorage.setItem("userID", response.data.userID);
         
       } catch (error) {
         console.log(error);

@@ -9,8 +9,7 @@ export const Home = () => {
     O Marketplace é a plataforma central para estudantes da nossa universidade comprarem, venderem e trocarem uma variedade de itens, desde livros didáticos até artigos de decoração.<br/>
     Economize dinheiro, reduza seu impacto ambiental e conecte-se com a comunidade universitária de uma maneira totalmente nova. <br/> Junte-se ao Marketplace hoje e faça parte desta experiência única de compra, venda e troca!</p>
     </div>
-  
-        
+          
   )
 }
 

@@ -16,12 +16,9 @@ export const UserProfile = () => {
       e.preventDefault();
       
       try {
-
-        setEmail('');
-        setPassword('');
         // Make a PUT request to the updateProfile endpoint
         
-        const response = await axios.get('/session', 
+        const response = await axios.get('/:id', 
         {
           headers: {"Content-Type": 'application/json'},
         }
@@ -42,11 +39,6 @@ export const UserProfile = () => {
       e.preventDefault();
       
       try {
-        setName('');
-        setEmail('');
-        setPassword('');
-        setLocation('');
-        setPhoneNumber('');
         // Make a PUT request to the updateProfile endpoint
         
         const response = await axios.put('/auth/:id', { email, password }, 
