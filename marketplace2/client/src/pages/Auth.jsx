@@ -121,7 +121,7 @@ export const Auth= () => {
       setEmail(''); // Limpa o estado do e-mail
       setPassword(''); // Limpa o estado da senha
       
-      window.location.href = '/'; // Redireciona o usuário para a página inicial
+      window.location.href = '/INE5646-Marketplace'; // Redireciona o usuário para a página inicial
 
     } catch (error) {
       alert('Password Incorreta'); // Exibe um alerta para senha incorreta
