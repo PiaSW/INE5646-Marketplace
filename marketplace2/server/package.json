@@ -1,4 +1,5 @@
 {
+  "homepage": "http://PiaSW.github.io/INE5646-Marketplace",
   "name": "server",
   "version": "1.0.0",
   "description": "",
@@ -6,6 +7,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "nodemon index.js"
   },
   "keywords": [],
