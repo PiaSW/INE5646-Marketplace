@@ -24,13 +24,15 @@ export const Navbar = () => {
         {cookies.access_token ? (
           <>
             <div className="start">
-              <Link to="/">Inicio</Link>
-              <Link to="/products">Produtos</Link>
-              <Link to="/my-products">Meus Produtos</Link>
-              <Link to="/contact">Contato</Link>
+              <Link to="/INE5646-Marketplace/">Inicio</Link>
+              <Link to="/INE5646-Marketplace/products">Produtos</Link>
+              <Link to="/INE5646-Marketplace/my-products">Meus Produtos</Link>
+              <Link to="/INE5646-Marketplace/contact">Contato</Link>
             </div>
             <div className="user">
-              <Link to="/userProfile">Perfil de Usuario</Link>
+              <Link to="/INE5646-Marketplace/userProfile">
+                Perfil de Usuario
+              </Link>
             </div>
             <div className="logout">
               <button onClick={logout}> Logout </button>
@@ -38,7 +40,7 @@ export const Navbar = () => {
           </>
         ) : (
           <div className="login">
-            <Link to="/auth">Registro/Login</Link>
+            <Link to="/INE5646-Marketplace/auth">Registro/Login</Link>
           </div>
         )}
       </nav>

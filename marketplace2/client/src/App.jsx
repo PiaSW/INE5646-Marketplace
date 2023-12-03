@@ -8,32 +8,34 @@ import Layout from './components/Layout';
 import Products from './pages/Products';
 import RegisterProducts from './pages/RegisterProducts';
 import UserProfile from './pages/UserProfile';
-
+import { Outlet } from 'react-router-dom';
 const App = () => {
   return (
+    <Outlet />
     // Componente principal que define as rotas da aplicação
-    <Routes>
-      {/* Layout é um componente que pode ser usado para envolver outras rotas */}
-      <Route element={<Layout />}>
-        {/* Rota para a página inicial */}
-        <Route path="/" element={<Home />} />
+    // <Routes>
+    //   {/* Layout é um componente que pode ser usado para envolver outras rotas */}
+    //   <Route element={<Layout />}>
+    //     {/* Rota para a página inicial */}
+    //     <Route path="/" element={<Home />} />
+    //     <Route path="/INE5646-Marketplace" element={<Home />} />
 
-        {/* Rota para a página de produtos */}
-        <Route path="/products" element={<Products />} />
+    //     {/* Rota para a página de produtos */}
+    //     <Route path="/products" element={<Products />} />
 
-        {/* Rota para a página de contato */}
-        <Route path="/contact" element={<Contact />} />
+    //     {/* Rota para a página de contato */}
+    //     <Route path="/contact" element={<Contact />} />
 
-        {/* Rota para a página de registro de usuário */}
-        <Route path="/auth" element={<Auth />} />
+    //     {/* Rota para a página de registro de usuário */}
+    //     <Route path="/auth" element={<Auth />} />
 
-        {/* Rota para a página de registro de produtos */}
-        <Route path="/my-products" element={<RegisterProducts />} />
+    //     {/* Rota para a página de registro de produtos */}
+    //     <Route path="/my-products" element={<RegisterProducts />} />
 
-        {/* Rota para a página do perfil do usuário */}
-        <Route path="/userProfile" element={<UserProfile />} />
-      </Route>
-    </Routes>
+    //     {/* Rota para a página do perfil do usuário */}
+    //     <Route path="/userProfile" element={<UserProfile />} />
+    //   </Route>
+    // </Routes>
   );
 };
 
