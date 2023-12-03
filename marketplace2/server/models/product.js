@@ -14,6 +14,9 @@ const productSchema = mongoose.Schema(
     fileNameOnServer: {
       type: String,
     },
+    userId: {
+      type: String,
+    },
     sale: {
       type: Boolean,
       default: false,

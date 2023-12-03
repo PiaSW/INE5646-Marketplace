@@ -1,31 +1,45 @@
 #card-container {
-     width: 15rem;
-     height: 20rem;
-     border: 1px solid black;
-     padding: 10px;
-     border-radius: 5px;
+    width: 15rem;
+    height: 20rem;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 10px;
 }
 
 #product-image {
     width: 100%;
 }
 
-.product-name{
+.product-name {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.product-description-container {
+    height: 100%;
+}
+
+.product-description {
     font-size: 1rem;
     font-weight: 400;
 }
 
-.price-row{
+.price-row {
     display: flex;
     vertical-align: top;
 }
-.price-symbol{
+
+.price-symbol {
     font-size: 1rem;
 }
-.price-whole{
+
+.price-whole {
     font-size: 2rem;
     font-weight: 400;
 }
-.price-fraction{
+
+.price-fraction {
     font-size: 1rem;
 }
