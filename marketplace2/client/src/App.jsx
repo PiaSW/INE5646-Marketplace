@@ -17,6 +17,7 @@ const App = () => {
       <Route element={<Layout />}>
         {/* Rota para a página inicial */}
         <Route path="/" element={<Home />} />
+        <Route path="/INE5646-Marketplace" element={<Home />} />
 
         {/* Rota para a página de produtos */}
         <Route path="/products" element={<Products />} />
