@@ -11,7 +11,12 @@ import UserProfile from './pages/UserProfile';
 import { Outlet } from 'react-router-dom';
 const App = () => {
   return (
-    <Outlet />
+        <>
+        <Route element={<Layout />}>
+        <Outlet />
+        </Route>
+        </>
+    
     // Componente principal que define as rotas da aplicação
     // <Routes>
     //   {/* Layout é um componente que pode ser usado para envolver outras rotas */}
