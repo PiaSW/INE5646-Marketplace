@@ -4,7 +4,8 @@ import './RegisterProducts.css';
 import axios from 'axios';
 import BACKEND_URL from '../constants';
 import { getUserID } from '../hook/getUserId';
-import DisplayProducts from '../components/DisplayProducts';
+import DisplayMyProducts from '../components/DisplayMyProducts';
+import { useNavigate } from 'react-router-dom';
 export const RegisterProducts = () => {
   // Estados locais para armazenar dados do formulário
   const [file, setFile] = useState();
@@ -17,6 +18,7 @@ export const RegisterProducts = () => {
   const [sale, setSale] = useState(false);
   const [exchange, setExchange] = useState(false);
   const [inputError, setInputError] = useState(null);
+  const navigate = useNavigate();
 
   // Função para lidar com alterações no preço
   function handlePriceOnChange(event) {
@@ -97,6 +99,7 @@ export const RegisterProducts = () => {
       });
 
     alert('Produto Cadastrado com sucesso');
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -204,7 +207,7 @@ export const RegisterProducts = () => {
           Enviar
         </button>
       </form>
-      <DisplayProducts />
+      <DisplayMyProducts />
     </div>
   );
 };

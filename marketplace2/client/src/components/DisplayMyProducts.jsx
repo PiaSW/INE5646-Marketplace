@@ -5,12 +5,13 @@ import axios from 'axios';
 import { getUserID } from '../hook/getUserId';
 import BACKEND_URL from '../constants';
 
-export const DisplayProducts = () => {
+export const DisplayMyProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
+    console.log('getUserID()', getUserID());
     async function get() {
       await axios
-        .get(BACKEND_URL + '/products/')
+        .get(BACKEND_URL + '/products/' + getUserID())
         .then(response => {
           console.log(response);
           setProducts(response.data);
@@ -45,4 +46,4 @@ export const DisplayProducts = () => {
   );
 };
 
-export default DisplayProducts;
+export default DisplayMyProducts;
