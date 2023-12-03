@@ -25,20 +25,22 @@ export const Auth= () => {
   const handleRegister = async (e) => {
     e.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
-      // Chama a função de registro passando nome, e-mail e senha
-      try {
-        // Faz uma chamada de API para registrar um novo usuário
-        await axios.post( BACKEND_URL + '/auth/register', { name, email, password }, {
-          headers: { "Content-Type": 'application/json' },
-        });
-        alert("Usuario registado com sucesso!")
-        setName('');// Limpa o estado do nome
-        setEmail(''); // Limpa o estado do e-mail
-        setPassword(''); // Limpa o estado da senha
-      } catch (error) {
-        console.log(error);
-      }
- 
+          await axios.post( BACKEND_URL + '/auth/register', { name, email, password }, {
+            headers: { "Content-Type": 'application/json' },
+          }).then(response => {
+            console.log(response);
+            
+          alert("Usuario registado com sucesso!");
+          setName('');// Limpa o estado do nome
+          setEmail(''); // Limpa o estado do e-mail
+          setPassword(''); // Limpa o estado da senha
+
+          })
+          .catch(error => {
+            alert("Usuario já existe!")
+            console.log(error);         
+          });;
+
   };
 
   // Renderiza o componente
@@ -46,10 +48,10 @@ export const Auth= () => {
     <div>
       {/* Formulário de Registro */}
       <form onSubmit={handleRegister}>
-        <h2>Register</h2>
+        <h2>Registro</h2>
 
         {/* Campo de Nome */}
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Usuário:</label>
         <input
           type="text"
           id="username"
@@ -71,7 +73,7 @@ export const Auth= () => {
         />
 
         {/* Campo de Senha */}
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Senha:</label>
         <input
           type="password"
           id="password"
@@ -82,7 +84,7 @@ export const Auth= () => {
         />
 
         {/* Botão de Registro */}
-        <button type="submit">Register</button>
+        <button type="submit">Registro</button>
       </form>
     </div>
   );
@@ -115,20 +117,16 @@ export const Auth= () => {
   
         setCookies("access_token", response.data.token);
         window.localStorage.setItem("userID", response.data.userID);
-        
+
+        setEmail(''); // Limpa o estado do e-mail
+        setPassword(''); // Limpa o estado da senha
+        navigate('/INE5646-Marketplace'); // Redireciona o usuário para a página inicial
       } catch (error) {
         console.log(error);
+        alert('Password Incorreta'); // Exibe um alerta para senha incorreta
       }
-      setEmail(''); // Limpa o estado do e-mail
-      setPassword(''); // Limpa o estado da senha
-      
-      navigate('/INE5646-Marketplace'); // Redireciona o usuário para a página inicial
-
     } catch (error) {
-      alert('Password Incorreta'); // Exibe um alerta para senha incorreta
       console.log('errr', error);
-      setErrMsg(error.response.data.message); // Configura a mensagem de erro (não está definido no código)
-      alert(error.response.data.message); // Exibe um alerta com a mensagem de erro
     }
   };
 
@@ -151,7 +149,7 @@ export const Auth= () => {
         />
 
         {/* Campo de Senha */}
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Senha:</label>
         <input
           type="password"
           id="password"

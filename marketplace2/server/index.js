@@ -40,14 +40,6 @@ app.listen(
 // Middleware CORS para permitir solicitações de qualquer origem
 app.use(cors());
 
-// Rota de exemplo para o endpoint '/'
-app.get('/', (request, response) => {
-  // Exibe informações da requisição no console
-  console.log(request);
-  // Retorna uma resposta com status 234 e uma mensagem de boas-vindas
-  return response.status(234).send('Welcome To MERN Stack Tutorial');
-});
-
 // Middleware para rotas relacionadas a autenticação
 app.use('/auth', usersRoute);
 
