@@ -53,10 +53,4 @@ root.render(
   <React.StrictMode>
     <RouterProvider router={router} />
   </React.StrictMode>
-
-  // <BrowserRouter>
-  //   <AuthProvider>
-  //     <App />
-  //   </AuthProvider>
-  // </BrowserRouter>
 );
