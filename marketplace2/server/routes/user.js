@@ -44,7 +44,9 @@ router.post('/register', async (request, response) => {
       await User.create(newUser);
 
       // Retorna uma resposta de sucesso com o usuário criado
-      return response.status(200).send({message: "Usuario registado com sucesso!"});
+      return response
+        .status(200)
+        .send({ message: 'Usuario registado com sucesso!' });
     } catch (error) {
       // Captura erros relacionados à criação do usuário e envia uma resposta de erro
       console.log(error.message);
@@ -116,9 +118,6 @@ router.post('/session', async (request, response) => {
   const secret =
     'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
   const token = request.cookies['MKcookie'];
-
-  console.log('Token');
-  console.log(token);
   if (!token) {
     return response.status(401).send({ error: 'Token not found' });
   }

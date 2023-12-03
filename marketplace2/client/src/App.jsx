@@ -28,7 +28,7 @@ const App = () => {
         <Route path="/auth" element={<Auth />} />
 
         {/* Rota para a página de registro de produtos */}
-        <Route path="/register-products" element={<RegisterProducts />} />
+        <Route path="/my-products" element={<RegisterProducts />} />
 
         {/* Rota para a página do perfil do usuário */}
         <Route path="/userProfile" element={<UserProfile />} />

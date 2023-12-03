@@ -1,9 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import './RegisterProducts.css';
-import DisplayProduct from '../components/DisplayProduct';
 import axios from 'axios';
 import BACKEND_URL from '../constants';
+import { getUserID } from '../hook/getUserId';
+import DisplayProducts from '../components/DisplayProducts';
 export const RegisterProducts = () => {
   // Estados locais para armazenar dados do formulário
   const [file, setFile] = useState();
@@ -87,13 +88,35 @@ export const RegisterProducts = () => {
           sale,
           exchange,
           fileNameOnServer: response.data.file,
+          userId: getUserID(),
         };
         postData(data);
       })
       .catch(error => {
         console.log(error);
       });
+
+    alert('Produto Cadastrado com sucesso');
   }
+
+  useEffect(() => {
+    console.log('getUserID()', getUserID());
+    async function get() {
+      await axios
+        .get(BACKEND_URL + '/products/', {
+          params: {
+            userid: getUserID(),
+          },
+        })
+        .then(response => {
+          console.log(response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+    get();
+  }, []);
 
   async function postData(data) {
     await axios
@@ -116,7 +139,7 @@ export const RegisterProducts = () => {
   // Renderiza o componente
   return (
     <div className="App">
-      <h2>Bem-vindo ao Registro de Produtos</h2>
+      <h2>Meus Produtos</h2>
       <form>
         {/* Campos do formulário */}
         <label htmlFor="productName">Nome do produto</label>
@@ -139,7 +162,6 @@ export const RegisterProducts = () => {
           id="productPrice"
           type="number"
           placeholder="Preço"
-          value={price}
           onChange={handlePriceOnChange}
         />
         {inputError && <div style={{ color: 'red' }}>{inputError}</div>}
@@ -182,6 +204,7 @@ export const RegisterProducts = () => {
           Enviar
         </button>
       </form>
+      <DisplayProducts />
     </div>
   );
 };

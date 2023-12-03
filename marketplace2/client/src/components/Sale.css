@@ -1,0 +1,11 @@
+.badge-container-sale {
+  background-color: lightgreen;
+  inline-size: 70px;
+  padding: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 2px;
+}
