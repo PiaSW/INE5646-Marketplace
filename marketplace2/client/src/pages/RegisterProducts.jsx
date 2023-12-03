@@ -14,6 +14,7 @@ export const RegisterProducts = () => {
   const [price, setPrice] = useState(null);
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
+  const [productContact, setProductContact] = useState('');
   const [sale, setSale] = useState(false);
   const [exchange, setExchange] = useState(false);
   const [inputError, setInputError] = useState(null);
@@ -47,6 +48,11 @@ export const RegisterProducts = () => {
     setProductDescription(event.target.value);
   }
 
+  // Função para lidar com alterações no contato do produto
+  function handleProductContactOnChange(event) {
+    setProductContact(event.target.value);
+  }
+
   // Função para lidar com alterações na checkbox de venda
   function handleSaleCheckboxOnChange() {
     setSale(!sale);
@@ -66,6 +72,38 @@ export const RegisterProducts = () => {
       setInputError(
         'Marcar se o produto está disponível para venda e/ou troca!'
       );
+      return;
+      }
+    if (!file) {
+      setInputError(
+        'Selecione uma imagem'
+      );
+      return;
+    } else {
+      setInputError(null);
+    }
+    if (!productContact) {
+      setInputError(
+        'Coloca um contato'
+      );
+      return;
+    } else {
+      setInputError(null);
+    }
+    if (!productDescription) {
+      setInputError(
+        'Coloca uma descrição'
+      );
+      return;
+    } else {
+      setInputError(null);
+    }
+
+    if (!productName) {
+      setInputError(
+        'Coloca um nome do produto'
+      );
+      return;
     } else {
       setInputError(null);
     }
@@ -139,6 +177,16 @@ export const RegisterProducts = () => {
           value={productDescription}
           onChange={handleProductDescriptionOnChange}
         />
+
+        <label htmlFor="productContact">Contato</label>
+        <textarea
+          id="productContact"
+          cols="40"
+          rows="2"
+          value={productContact}
+          onChange={handleProductContactOnChange}
+        />
+
         <label htmlFor="productPrice">Preço</label>
         <input
           id="productPrice"
