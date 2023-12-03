@@ -1,14 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/INE5646-Marketplace/logo.svg"/>
+    <link rel="icon" href="/INE5646-Marketplace/logo.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marketplace</title>
-    <script type="module" crossorigin src="/INE5646-Marketplace/assets/index-T-Qp3VFm.js"></script>
+    <script type="module" crossorigin src="/INE5646-Marketplace/assets/index-V714QK_x.js"></script>
     <link rel="stylesheet" crossorigin href="/INE5646-Marketplace/assets/index-7pSLdIm5.css">
   </head>
   <body>
     <div id="root"></div>
+    <script type="text/javascript">
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(
+            null,
+            null,
+            l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      })(window.location);
+    </script>
   </body>
 </html>
