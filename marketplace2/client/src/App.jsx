@@ -20,19 +20,19 @@ const App = () => {
         <Route path="/INE5646-Marketplace" element={<Home />} />
 
         {/* Rota para a página de produtos */}
-        <Route path="/products" element={<Products />} />
+        <Route path="/INE5646-Marketplace/products" element={<Products />} />
 
         {/* Rota para a página de contato */}
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/INE5646-Marketplace/contact" element={<Contact />} />
 
         {/* Rota para a página de registro de usuário */}
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/INE5646-Marketplace/auth" element={<Auth />} />
 
         {/* Rota para a página de registro de produtos */}
-        <Route path="/my-products" element={<RegisterProducts />} />
+        <Route path="/INE5646-Marketplace/my-products" element={<RegisterProducts />} />
 
         {/* Rota para a página do perfil do usuário */}
-        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/INE5646-Marketplace/userProfile" element={<UserProfile />} />
       </Route>
     </Routes>
   );
