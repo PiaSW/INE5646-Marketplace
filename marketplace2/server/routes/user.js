@@ -24,6 +24,12 @@ router.post('/register', async (request, response) => {
       });
     }
 
+    // Procura o usuário no banco de dados pelo email fornecido
+    const user = await User.findOne({ email: request.body.email });
+    if (user) {
+      return response.status(405).json({ message: 'User already exist!' });
+    }
+
     // Gera um salt para a criptografia da senha
     const salt = await bcrypt.genSalt();
 
@@ -42,7 +48,7 @@ router.post('/register', async (request, response) => {
       await User.create(newUser);
 
       // Retorna uma resposta de sucesso com o usuário criado
-      return response.status(200);
+      return response.status(200).send({message: "Usuario registado com sucesso!"});
     } catch (error) {
       // Captura erros relacionados à criação do usuário e envia uma resposta de erro
       console.log(error.message);
