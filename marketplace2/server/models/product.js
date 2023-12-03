@@ -11,18 +11,17 @@ const productSchema = mongoose.Schema(
     price: {
       type: Number,
     },
-    image: {
-      data: Buffer,
-      contentType: String,
+    fileNameOnServer: {
+      type: String,
     },
     sale: {
       type: Boolean,
       default: false,
     },
     exchange: {
-        type: Boolean,
-        default: false,
-      },
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

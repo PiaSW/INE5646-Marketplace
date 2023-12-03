@@ -1,11 +1,14 @@
-import express from "express";
-import {PORT, mongoDBurl} from "./config.js";
-import mongoose from "mongoose";
+import express from 'express';
+import { PORT, mongoDBurl } from './config.js';
+import mongoose from 'mongoose';
 import usersRoute from './routes/user.js';
 import productsRoute from './routes/product.js';
+import uploadImageRoute from './routes/uploadImages.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
+import multer from 'multer';
+import path from 'path';
 
 // Configuração para carregar variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -19,6 +22,8 @@ app.use(express.json());
 // Middleware para analisar cookies nas requisições
 app.use(cookieParser());
 
+app.use(express.static('public'));
+
 // Configuração do CORS para permitir solicitações de um cliente específico
 // app.use(
 //   cors({
@@ -28,7 +33,10 @@ app.use(cookieParser());
 //   })
 // );
 
-app.listen(process.env.PORT || port, console.log("connected to port:" + process.env.PORT || port ));
+app.listen(
+  process.env.PORT || port,
+  console.log('connected to port:' + process.env.PORT || port)
+);
 // Middleware CORS para permitir solicitações de qualquer origem
 app.use(cors());
 
@@ -45,9 +53,11 @@ app.use('/auth', usersRoute);
 
 // Middleware para rotas relacionadas a produtos
 app.use('/products', productsRoute);
+app.use('/upload-images', uploadImageRoute);
 
 // Conecta-se ao banco de dados MongoDB usando a URL fornecida
-mongoose.connect(mongoDBurl)
+mongoose
+  .connect(mongoDBurl)
   .then(() => {
     console.log('App connected to DB');
     // Inicia o servidor na porta especificada
@@ -55,6 +65,6 @@ mongoose.connect(mongoDBurl)
       console.log(`App -> port: ${PORT}`);
     });
   })
-  .catch((error) => {
+  .catch(error => {
     console.log(error);
   });

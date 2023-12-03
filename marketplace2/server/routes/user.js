@@ -2,7 +2,7 @@ import express from 'express';
 import { User } from '../models/user.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import {mongoDBurl} from "../config.js";
+import { mongoDBurl } from '../config.js';
 
 const router = express.Router();
 
@@ -13,11 +13,7 @@ router.post('/register', async (request, response) => {
     console.log('registo', request.body);
 
     // Verifica se todos os campos obrigatórios foram fornecidos no corpo da requisição
-    if (
-      !request.body.name ||
-      !request.body.password ||
-      !request.body.email
-    ) {
+    if (!request.body.name || !request.body.password || !request.body.email) {
       // Retorna uma resposta de erro se algum campo estiver ausente
       return response.status(400).send({
         message: 'Send all required fields: name, email, password',
@@ -48,7 +44,6 @@ router.post('/register', async (request, response) => {
       console.log(error.message);
       response.status(500).send({ message: error.message });
     }
-
   } catch (error) {
     // Captura erros gerais e envia uma resposta de erro
     console.log(error.message);
@@ -77,19 +72,27 @@ router.post('/login', async (request, response) => {
     }
 
     // Compara a senha fornecida com a senha armazenada no banco de dados
-    const checkPassword = await bcrypt.compare(request.body.password, user.password);
+    const checkPassword = await bcrypt.compare(
+      request.body.password,
+      user.password
+    );
     if (!checkPassword) {
       return response.status(400).json({ message: 'Wrong password' });
     } else {
       try {
         // TODO: corrigir .env secret
-        const secret = 'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
+        const secret =
+          'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
 
         // Gera um token JWT e o adiciona como cookie na resposta
         const token = jwt.sign({ id: user._id }, secret);
 
         // Retorna uma resposta de sucesso com o token
-        response.status(200).json({ msg: "Autenticação realizada com sucesso!", token, userID: user._id });
+        response.status(200).json({
+          msg: 'Autenticação realizada com sucesso!',
+          token,
+          userID: user._id,
+        });
       } catch (error) {
         // Retorna uma resposta de erro se houver um problema na geração do token
         response.status(500).json({ msg: error.message });
@@ -104,9 +107,12 @@ router.post('/login', async (request, response) => {
 
 // Rota POST para obter a sessão do usuário com base no token armazenado no cookie
 router.post('/session', async (request, response) => {
-  const secret = 'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
+  const secret =
+    'bc9fe94b3387d593047eed60bb1f206c3481258b7b41da0c97f4cc95793f8c1b';
   const token = request.cookies['MKcookie'];
 
+  console.log('Token');
+  console.log(token);
   if (!token) {
     return response.status(401).send({ error: 'Token not found' });
   }
@@ -117,6 +123,7 @@ router.post('/session', async (request, response) => {
     return response.status(404).json({ message: 'User not found in token' });
   }
 
+  console.log(id);
   // Procura o usuário no banco de dados pelo ID obtido do token
   const user = await User.findOne({ _id: id });
   if (!user) {
@@ -215,7 +222,5 @@ router.delete('/:id', async (request, response) => {
     response.status(500).send({ message: error.message });
   }
 });
-
-
 
 export default router;

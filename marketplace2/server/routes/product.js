@@ -1,5 +1,7 @@
 import express from 'express';
 import { Product } from '../models/product.js';
+import multer from 'multer';
+import path from 'path';
 const router = express.Router();
 
 // Rota POST para criar um novo produto
@@ -7,7 +9,6 @@ router.post('/', async (request, response) => {
   try {
     // Exibe os dados recebidos no corpo da requisição
     console.log(request.body);
-
     // Cria um novo objeto representando o produto
     const newProduct = {
       name: request.body.name,
@@ -15,16 +16,16 @@ router.post('/', async (request, response) => {
       price: request.body.price,
       sale: request.body.sale,
       exchange: request.body.exchange,
+      fileNameOnServer: request.body.fileNameOnServer,
     };
 
     // Cria o produto no banco de dados e retorna uma resposta de sucesso
     const product = await Product.create(newProduct);
     return response.status(200).send(product);
-
   } catch (error) {
     // Retorna uma resposta de erro para erros gerais
     console.log(error.message);
-    response.status(500).send({ message: error.message });
+    return response.status(500).send({ message: error.message });
   }
 });
 
@@ -44,7 +45,6 @@ router.put('/', async (request, response) => {
     // Atualiza o produto no banco de dados e retorna uma resposta de sucesso
     const product = await Product.updateOne(newProduct);
     return response.status(200).send(product);
-
   } catch (error) {
     // Retorna uma resposta de erro para erros gerais
     console.log(error.message);
@@ -60,7 +60,6 @@ router.get('/', async (request, response) => {
 
     // Retorna uma resposta de sucesso com os dados dos produtos
     return response.status(200).send(products);
-
   } catch (error) {
     // Retorna uma resposta de erro para erros gerais
     console.log(error.message);
@@ -74,13 +73,11 @@ router.delete('/', async (request, response) => {
     // Exclui todos os produtos no banco de dados e retorna uma resposta de sucesso
     const products = await Product.deleteMany({});
     return response.status(200).send(products);
-
   } catch (error) {
     // Retorna uma resposta de erro para erros gerais
     console.log(error.message);
     response.status(500).send({ message: error.message });
   }
 });
-
 
 export default router;
