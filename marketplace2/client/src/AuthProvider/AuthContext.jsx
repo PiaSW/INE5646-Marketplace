@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import axios from '../api/axios'
+import axios from '../api/axios';
+import BACKEND_URL from '../constants';
 // Criação de um contexto para autenticação
 const AuthContext = createContext();
 
@@ -12,9 +13,13 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       // Faz uma chamada de API para autenticação
-      const response = await axios.post('/auth/login', { email, password }, {
-        headers: { "Content-Type": 'application/json' },
-      });
+      const response = await axios.post(
+        BACKEND_URL + '/auth/login',
+        { email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
 
       // Extrai o token ou outras informações relevantes da resposta
       const auth = response.headers;
@@ -31,10 +36,13 @@ export const AuthProvider = ({ children }) => {
   const register = async (name, email, password) => {
     try {
       // Faz uma chamada de API para registrar um novo usuário
-      const response = await axios.post('/auth/register', { name, email, password }, {
-        headers: { "Content-Type": 'application/json' },
-      });
-
+      const response = await axios.post(
+        BACKEND_URL + '/auth/register',
+        { name, email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -44,9 +52,13 @@ export const AuthProvider = ({ children }) => {
   const session = async (email, password) => {
     try {
       // Faz uma chamada de API para obter informações da sessão
-      const response = await axios.post('/auth/session', { email, password }, {
-        headers: { "Content-Type": 'application/json' },
-      });
+      const response = await axios.post(
+        BACKEND_URL + '/auth/session',
+        { email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      );
 
       // Define o usuário no estado local
       setUser(userData);

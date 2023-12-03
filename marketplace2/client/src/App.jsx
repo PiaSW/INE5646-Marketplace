@@ -1,14 +1,13 @@
-import React from 'react'
-import {Routes, Route} from 'react-router-dom'
-import Home from './pages/Home'
-import Contact from './pages/Contact'
-import Auth from './pages/Auth'
-import './App.css'
-import Layout from './components/Layout'
-import Products from './pages/Products'
-import RegisterProducts from './pages/RegisterProducts'
-import UserProfile from './pages/UserProfile'
-
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Contact from './pages/Contact';
+import Auth from './pages/Auth';
+import './App.css';
+import Layout from './components/Layout';
+import Products from './pages/Products';
+import RegisterProducts from './pages/RegisterProducts';
+import UserProfile from './pages/UserProfile';
 
 const App = () => {
   return (
@@ -17,7 +16,7 @@ const App = () => {
       {/* Layout é um componente que pode ser usado para envolver outras rotas */}
       <Route element={<Layout />}>
         {/* Rota para a página inicial */}
-        <Route path="/INE5646-Marketplace" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
         {/* Rota para a página de produtos */}
         <Route path="/products" element={<Products />} />
@@ -38,5 +37,4 @@ const App = () => {
   );
 };
 
-
-export default App
+export default App;

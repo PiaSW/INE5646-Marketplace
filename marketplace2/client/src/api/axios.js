@@ -1,5 +1,6 @@
 import axios from 'axios';
+import BACKEND_URL from '../constants';
 
 export default axios.create({
-    baseURL: 'https://grumpy-petticoat-fly.cyclic.app'
+  baseURL: BACKEND_URL,
 });
