@@ -59,12 +59,12 @@ export const UserProfile = () => {
   
     return (
     <div className="App">
+        <h2>Perfil de Usuário</h2>
         <form onSubmit={handleProfileUpdate}>
-        <h2>Perfil de Utilizador</h2>
-        <label for="username">Username:</label>
+        <label for="username">Usuário:</label>
         <input type="text" id="username" name="username" value={name} onChange={(e) => setName(e.target.value)} />
 
-        <label for="password">Password:</label>
+        <label for="password">Senha:</label>
         <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
         <label for="email">Email:</label>

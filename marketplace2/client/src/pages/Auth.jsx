@@ -46,10 +46,10 @@ export const Auth= () => {
     <div>
       {/* Formulário de Registro */}
       <form onSubmit={handleRegister}>
-        <h2>Register</h2>
+        <h2>Registro</h2>
 
         {/* Campo de Nome */}
-        <label htmlFor="username">Username:</label>
+        <label htmlFor="username">Usuário:</label>
         <input
           type="text"
           id="username"
@@ -71,7 +71,7 @@ export const Auth= () => {
         />
 
         {/* Campo de Senha */}
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Senha:</label>
         <input
           type="password"
           id="password"
@@ -82,7 +82,7 @@ export const Auth= () => {
         />
 
         {/* Botão de Registro */}
-        <button type="submit">Register</button>
+        <button type="submit">Registro</button>
       </form>
     </div>
   );
@@ -151,7 +151,7 @@ export const Auth= () => {
         />
 
         {/* Campo de Senha */}
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Senha:</label>
         <input
           type="password"
           id="password"

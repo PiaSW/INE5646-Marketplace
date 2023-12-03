@@ -99,7 +99,7 @@ export const RegisterProducts = () => {
   // Renderiza o componente
   return (
     <div className="App">
-      <h2>Bem-vindo ao Cadastro de Produtos</h2>
+      <h2>Bem-vindo ao Registro de Produtos</h2>
       <form>
         {/* Campos do formulário */}
         <label htmlFor="productName">Nome do produto</label>
@@ -120,7 +120,7 @@ export const RegisterProducts = () => {
 
         {/* Seletor de arquivo */}
         <div>
-          <label htmlFor="file" className='btn-label'>Select Image</label>
+          <label htmlFor="file" className='btn-label'>Selecionar Imagem</label>
           <span>{fileName}</span>
           <input id="file" hidden type="file" onChange={handleFileInput} />
         </div>
@@ -130,7 +130,7 @@ export const RegisterProducts = () => {
         {file && <img className='product-image' src={file} />}
 
         {/* Botão de envio do formulário */}
-        <button type="submit" onClick={submitForm}>Submit</button>
+        <button type="submit" onClick={submitForm}>Enviar</button>
       </form>
     </div>
   );
