@@ -50,9 +50,9 @@ const Register = () => {
   return (
     <div>
       {/* Formulário de Registro */}
+      
       <form onSubmit={handleRegister}>
-        <h2>Registro</h2>
-
+      <h2>Registro</h2>
         {/* Campo de Nome */}
         <label htmlFor="username">Usuário:</label>
         <input
