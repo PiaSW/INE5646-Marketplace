@@ -97,4 +97,19 @@ router.delete('/', async (request, response) => {
   }
 });
 
+// Rota DELETE para excluir todos os produtos
+router.delete('/:id', async (request, response) => {
+  try {
+    // Exclui todos os produtos no banco de dados e retorna uma resposta de sucesso
+    const product = await Product.deleteOne({ _id: request.params.id });
+    return response
+      .status(200)
+      .send({ message: ' Product ' + request.params.id + ' was deleted' });
+  } catch (error) {
+    // Retorna uma resposta de erro para erros gerais
+    console.log(error.message);
+    response.status(500).send({ message: error.message });
+  }
+});
+
 export default router;

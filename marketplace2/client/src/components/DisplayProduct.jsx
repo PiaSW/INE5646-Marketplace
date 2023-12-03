@@ -1,15 +1,35 @@
 /* eslint-disable react/prop-types */
 import './DisplayProduct.css';
-import React from 'react';
 import Sale from './Sale';
 import Exchange from './Exchange';
-export const DisplayProduct = ({ product }) => {
-  const priceSymbol = '$';
+import TrashBin from '/trash.svg';
+import axios from 'axios';
+import BACKEND_URL from '../constants';
 
+export const DisplayProduct = ({ product, displayDeleteButton }) => {
+  const priceSymbol = '$';
   var priceWhole = String(product.price).split('.')[0];
   var priceFraction = String(product.price).split('.')[1] || '00';
+
+  async function handleDeleteProduct() {
+    console.log(product.id);
+    await axios
+      .delete(BACKEND_URL + '/products/' + product.id)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    window.location.reload();
+  }
   return (
     <div id="card-container">
+      {displayDeleteButton && (
+        <div className="delete-button">
+          <img id="trash-bin" src={TrashBin} onClick={handleDeleteProduct} />
+        </div>
+      )}
       <div id="image-container">
         <img id="product-image" src={product.image} />
       </div>

@@ -13,7 +13,7 @@ export const DisplayMyProducts = () => {
       await axios
         .get(BACKEND_URL + '/products/' + getUserID())
         .then(response => {
-          console.log(response);
+          console.log(response.data);
           setProducts(response.data);
         })
         .catch(error => {
@@ -37,7 +37,9 @@ export const DisplayMyProducts = () => {
                 price: product.price,
                 sale: product.sale,
                 exchange: product.exchange,
+                id: product._id,
               }}
+              displayDeleteButton={true}
             />
           );
         })}

@@ -8,6 +8,19 @@
     margin-top: 10px;
 }
 
+.delete-button {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#trash-bin {
+    width: 2rem;
+}
+
+#trash-bin:hover {
+    cursor: pointer;
+}
+
 #product-image {
     width: 100%;
 }

@@ -2,7 +2,6 @@ import './DisplayProducts.css';
 import DisplayProduct from './DisplayProduct';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getUserID } from '../hook/getUserId';
 import BACKEND_URL from '../constants';
 
 export const DisplayProducts = () => {
@@ -12,7 +11,7 @@ export const DisplayProducts = () => {
       await axios
         .get(BACKEND_URL + '/products/')
         .then(response => {
-          console.log(response);
+          console.log(response.data);
           setProducts(response.data);
         })
         .catch(error => {

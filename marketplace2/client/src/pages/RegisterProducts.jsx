@@ -5,7 +5,6 @@ import axios from 'axios';
 import BACKEND_URL from '../constants';
 import { getUserID } from '../hook/getUserId';
 import DisplayMyProducts from '../components/DisplayMyProducts';
-import { useNavigate } from 'react-router-dom';
 export const RegisterProducts = () => {
   // Estados locais para armazenar dados do formulário
   const [file, setFile] = useState();
@@ -18,7 +17,6 @@ export const RegisterProducts = () => {
   const [sale, setSale] = useState(false);
   const [exchange, setExchange] = useState(false);
   const [inputError, setInputError] = useState(null);
-  const navigate = useNavigate();
 
   // Função para lidar com alterações no preço
   function handlePriceOnChange(event) {
@@ -101,25 +99,6 @@ export const RegisterProducts = () => {
     alert('Produto Cadastrado com sucesso');
     window.location.reload();
   }
-
-  useEffect(() => {
-    console.log('getUserID()', getUserID());
-    async function get() {
-      await axios
-        .get(BACKEND_URL + '/products/', {
-          params: {
-            userid: getUserID(),
-          },
-        })
-        .then(response => {
-          console.log(response);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-    }
-    get();
-  }, []);
 
   async function postData(data) {
     await axios
