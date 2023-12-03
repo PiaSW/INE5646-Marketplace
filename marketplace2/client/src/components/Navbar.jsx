@@ -21,7 +21,7 @@ export const Navbar = () => {
    <nav>
       {cookies.access_token ? (
       <><div className='start'>
-          <Link to="/">Inicio</Link>
+          <Link to="/INE5646-Marketplace">Inicio</Link>
           <Link to="/products">Produtos</Link>
           <Link to="/register-products">Registo de Produtos</Link>
           <Link to="/contact">Contacto</Link>

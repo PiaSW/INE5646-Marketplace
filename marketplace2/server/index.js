@@ -10,6 +10,12 @@ import cookieParser from 'cookie-parser'
 // Configuração para carregar variáveis de ambiente do arquivo .env
 dotenv.config();
 
+// Configurar origens permitidas usando o middleware cors
+const corsOptions = {
+  origin: 'http://localhost:5173', // Adicione as origens permitidas
+  optionsSuccessStatus: 200,
+};
+
 // Cria uma instância do aplicativo Express
 const app = express();
 const port = 5000;
@@ -29,16 +35,9 @@ app.use(cookieParser());
 // );
 
 app.listen(process.env.PORT || port, console.log("connected to port:" + process.env.PORT || port ));
-// Middleware CORS para permitir solicitações de qualquer origem
-app.use(cors());
 
-// Rota de exemplo para o endpoint '/'
-app.get('/', (request, response) => {
-  // Exibe informações da requisição no console
-  console.log(request);
-  // Retorna uma resposta com status 234 e uma mensagem de boas-vindas
-  return response.status(234).send('Welcome To MERN Stack Tutorial');
-});
+// Middleware CORS para permitir solicitações de qualquer origem
+app.use(cors(corsOptions));
 
 // Middleware para rotas relacionadas a autenticação
 app.use('/auth', usersRoute);
