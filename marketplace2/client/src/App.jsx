@@ -1,5 +1,5 @@
 import React from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter,Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Contact from './pages/Contact';
 import Auth from './pages/Auth';
@@ -11,10 +11,11 @@ import UserProfile from './pages/UserProfile';
 import { Outlet } from 'react-router-dom';
 const App = () => {
   return (
-        <>
-        <Route element={<Layout />}>
+    <>
+        <Layout>
+
+        </Layout>
         <Outlet />
-        </Route>
         </>
     
     // Componente principal que define as rotas da aplicação
