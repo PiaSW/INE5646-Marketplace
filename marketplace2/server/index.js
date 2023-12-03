@@ -33,18 +33,15 @@ app.use(express.static('public'));
 //   })
 // );
 
-app.listen(
-  process.env.PORT || port,
-  console.log('connected to port:' + process.env.PORT || port)
-);
+app.listen(process.env.PORT || port, console.log('connected to port:' + port));
 // Middleware CORS para permitir solicitações de qualquer origem
 app.use(cors());
 
 // Middleware para rotas relacionadas a autenticação
 app.use('/auth', usersRoute);
-
 // Middleware para rotas relacionadas a produtos
 app.use('/products', productsRoute);
+
 app.use('/upload-images', uploadImageRoute);
 
 // Conecta-se ao banco de dados MongoDB usando a URL fornecida

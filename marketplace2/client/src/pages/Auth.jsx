@@ -1,46 +1,49 @@
-import React from 'react'
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 import { useState } from 'react';
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 import { BACKEND_URL } from '../constants';
 
-export const Auth= () => {
-  return(
+export const Auth = () => {
+  return (
     <div className="auth">
       <Register />
       <Login />
     </div>
-  )
-}
+  );
+};
 
- const Register = () => {
+const Register = () => {
   // Estados locais para controlar os campos do formulário
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   // Função chamada ao enviar o formulário
-  const handleRegister = async (e) => {
+  const handleRegister = async e => {
     e.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
-          await axios.post( BACKEND_URL + '/auth/register', { name, email, password }, {
-            headers: { "Content-Type": 'application/json' },
-          }).then(response => {
-            console.log(response);
-            
-          alert("Usuario registado com sucesso!");
-          setName('');// Limpa o estado do nome
-          setEmail(''); // Limpa o estado do e-mail
-          setPassword(''); // Limpa o estado da senha
+    await axios
+      .post(
+        BACKEND_URL + '/auth/register',
+        { name, email, password },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        }
+      )
+      .then(response => {
+        console.log(response);
 
-          })
-          .catch(error => {
-            alert("Usuario já existe!")
-            console.log(error);         
-          });;
-
+        alert('Usuario registado com sucesso!');
+        setName(''); // Limpa o estado do nome
+        setEmail(''); // Limpa o estado do e-mail
+        setPassword(''); // Limpa o estado da senha
+      })
+      .catch(error => {
+        alert('Usuario já existe!');
+        console.log(error);
+      });
   };
 
   // Renderiza o componente
@@ -57,7 +60,7 @@ export const Auth= () => {
           id="username"
           name="username"
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => setName(e.target.value)}
           required
         />
 
@@ -68,7 +71,7 @@ export const Auth= () => {
           id="email"
           name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           required
         />
 
@@ -79,7 +82,7 @@ export const Auth= () => {
           id="password"
           name="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           required
         />
 
@@ -90,37 +93,39 @@ export const Auth= () => {
   );
 };
 
- const Login = () => {
+const Login = () => {
   // Estados locais para controlar os campos do formulário
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [_, setCookies] = useCookies(["access_token"]);
+  const [_, setCookies] = useCookies(['access_token']);
   const navigate = useNavigate();
-
 
   // Obtém a função de login do hook de autenticação
   //const { login } = useAuth();
 
   // Função chamada ao enviar o formulário de login
-  const handleLogin = async (e) => {
+  const handleLogin = async e => {
     e.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
     try {
-
       // Chama a função de login passando e-mail e senha
       //login(email, password);
       try {
         // Faz uma chamada de API para autenticação
-        const response = await axios.post( BACKEND_URL + '/auth/login', { email, password }, {
-          headers: { "Content-Type": 'application/json' },
-        });
-  
-        setCookies("access_token", response.data.token);
-        window.localStorage.setItem("userID", response.data.userID);
+        const response = await axios.post(
+          BACKEND_URL + '/auth/login',
+          { email, password },
+          {
+            headers: { 'Content-Type': 'application/json' },
+          }
+        );
+
+        setCookies('access_token', response.data.token);
+        window.localStorage.setItem('userID', response.data.userID);
 
         setEmail(''); // Limpa o estado do e-mail
         setPassword(''); // Limpa o estado da senha
-        navigate('/INE5646-Marketplace'); // Redireciona o usuário para a página inicial
+        navigate('/'); // Redireciona o usuário para a página inicial
       } catch (error) {
         console.log(error);
         alert('Password Incorreta'); // Exibe um alerta para senha incorreta
@@ -144,7 +149,7 @@ export const Auth= () => {
           id="email"
           name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={e => setEmail(e.target.value)}
           required
         />
 
@@ -155,7 +160,7 @@ export const Auth= () => {
           id="password"
           name="password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={e => setPassword(e.target.value)}
           required
         />
 
@@ -166,5 +171,4 @@ export const Auth= () => {
   );
 };
 
-
-export default Auth
+export default Auth;
