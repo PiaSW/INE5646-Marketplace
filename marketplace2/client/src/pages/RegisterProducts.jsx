@@ -168,6 +168,7 @@ export const RegisterProducts = () => {
           id="productName"
           type="text"
           value={productName}
+          maxLength={40}
           onChange={handleProductNameOnChange}
         />
         <label htmlFor="productDescription">Descrição</label>
