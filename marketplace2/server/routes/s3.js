@@ -6,10 +6,10 @@ import { promisify } from 'util';
 
 const router = express.Router();
 dotenv.config()
-const region = process.env.AWS_REGION;
+const region = process.env.AWS_REGION_ENV;
 const bucketName = "direct-upload-s3-bucket-marketplace";
-const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
-const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID_ENV;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY_ENV;
 
 const s3 = new aws.S3({
     region,
