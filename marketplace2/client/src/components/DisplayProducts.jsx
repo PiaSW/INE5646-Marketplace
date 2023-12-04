@@ -30,7 +30,7 @@ export const DisplayProducts = () => {
               key={i}
               product={{
                 name: product.name,
-                image: BACKEND_URL + '/images/' + product.fileNameOnServer,
+                image: product.imageUrl,
                 description: product.description,
                 contact: product.contact,
                 price: product.price,
