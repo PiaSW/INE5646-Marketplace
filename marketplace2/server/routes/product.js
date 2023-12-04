@@ -9,18 +9,21 @@ const router = express.Router();
 router.post('/', async (request, response) => {
   try {
     // Exibe os dados recebidos no corpo da requisição
+    console.log("request.body");
     console.log(request.body);
     // Cria um novo objeto representando o produto
     const newProduct = {
       name: request.body.name,
       description: request.body.description,
+      contact: request.body.contact,
       price: request.body.price,
       sale: request.body.sale,
       exchange: request.body.exchange,
-      fileNameOnServer: request.body.fileNameOnServer,
+      imageUrl: request.body.imageUrl,
       userId: request.body.userId,
     };
-
+    console.log("newProduct");
+    console.log(newProduct);
     // Cria o produto no banco de dados e retorna uma resposta de sucesso
     const product = await Product.create(newProduct);
     return response.status(200).send(product);

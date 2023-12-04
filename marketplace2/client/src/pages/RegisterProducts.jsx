@@ -110,44 +110,45 @@ export const RegisterProducts = () => {
 
     const formData = new FormData();
     formData.append('file', file);
+    const {url} = await axios.get(BACKEND_URL + '/s3Url').then(response => response.data);
 
-    //Chamada da API para registrar o produto
-    await axios
-      .post(BACKEND_URL + '/upload-images/', formData)
-      .then(response => {
-        console.log(response.data.file);
-        setFileNameOnServer(response.data.file);
+    await fetch(url, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "multipart/form-data"
+      },
+      body: file
+    })
 
-        // Dados a serem enviados na chamada da API
-        const data = {
+    const imageUrl = url.split('?')[0];
+    console.log("imageUrl", imageUrl);
+
+            const data = {
           name: productName,
           description: productDescription,
+          contact: productContact,
           price: parseFloat(price),
           sale,
           exchange,
-          fileNameOnServer: response.data.file,
-          userId: getUserID(),
+          imageUrl: imageUrl,
+            userId: getUserID(),
         };
-        postData(data);
-      })
-      .catch(error => {
-        console.log(error);
-      });
 
-    alert('Produto Cadastrado com sucesso');
-    window.location.reload();
+
+        await axios
+        .post(BACKEND_URL + '/products/', data)
+        .then(response => {
+          console.log(response);
+          alert('Produto Cadastrado com sucesso');
+            window.location.reload();
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
   }
 
-  async function postData(data) {
-    await axios
-      .post(BACKEND_URL + '/products/', data)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
+  
 
   // Função para lidar com a seleção de arquivo
   function handleFileInput(event) {

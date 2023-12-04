@@ -32,6 +32,7 @@ export const DisplayProducts = () => {
                 name: product.name,
                 image: BACKEND_URL + '/images/' + product.fileNameOnServer,
                 description: product.description,
+                contact: product.contact,
                 price: product.price,
                 sale: product.sale,
                 exchange: product.exchange,

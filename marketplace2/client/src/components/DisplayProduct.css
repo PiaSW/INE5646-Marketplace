@@ -8,11 +8,15 @@
     margin-top: 10px;
     overflow: visible;
     overflow-wrap: anywhere;
+    position: relative;
 }
 
 .delete-button {
     display: flex;
     flex-direction: row-reverse;
+    position: absolute;
+    z-index: 10;
+    right: 10px;
 }
 
 #trash-bin {

@@ -8,8 +8,8 @@ import BACKEND_URL from '../constants';
 
 export const DisplayProduct = ({ product, displayDeleteButton }) => {
   const priceSymbol = '$';
-  var priceWhole = String(product.price).split('.')[0];
-  var priceFraction = String(product.price).split('.')[1] || '00';
+  var priceWhole = String((Math.round(product.price * 100) / 100).toFixed(2)).split('.')[0];
+  var priceFraction = String((Math.round(product.price * 100) / 100).toFixed(2)).split('.')[1];
 
   async function handleDeleteProduct() {
     console.log(product.id);
@@ -39,6 +39,9 @@ export const DisplayProduct = ({ product, displayDeleteButton }) => {
         </div>
         <div className="product-description-container">
           <span className="product-description">{product.description}</span>
+        </div>
+        <div className="product-contact-container">
+          <span className="product-contact">{product.contact}</span>
         </div>
         <div className="price-row">
           <span className="price-symbol">{priceSymbol}</span>

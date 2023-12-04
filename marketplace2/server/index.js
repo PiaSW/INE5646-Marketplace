@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import usersRoute from './routes/user.js';
 import productsRoute from './routes/product.js';
 import uploadImageRoute from './routes/uploadImages.js';
+import s3Route from './routes/s3.js';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
@@ -43,6 +44,8 @@ app.use('/auth', usersRoute);
 app.use('/products', productsRoute);
 
 app.use('/upload-images', uploadImageRoute);
+
+app.use('/s3Url', s3Route);
 
 // Conecta-se ao banco de dados MongoDB usando a URL fornecida
 mongoose

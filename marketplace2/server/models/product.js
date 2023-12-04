@@ -8,10 +8,13 @@ const productSchema = mongoose.Schema(
     description: {
       type: String,
     },
+    contact: {
+      type: String,
+    },
     price: {
       type: Number,
     },
-    fileNameOnServer: {
+    imageUrl: {
       type: String,
     },
     userId: {
