@@ -182,24 +182,33 @@ router.get('/:id', async (request, response) => {
 // Rota PUT para atualizar um usuário pelo ID
 router.put('/:id', async (request, response) => {
   try {
+    console.log('update', request.body);
+
     // Verifica se todos os campos obrigatórios foram fornecidos no corpo da requisição
-    if (!request.body.name || !request.body.email || request.body.password) {
+    if (!request.body.name || !request.body.email) {
+      // Retorna uma resposta de erro se algum campo estiver ausente
       return response.status(400).send({
-        message: 'Send all required fields: name, password, email',
+        message: 'Send all required fields: name, email',
       });
     }
+    
+    // Cria um objeto representando o novo usuário
+    const updatedUser = {
+      name: request.body.name,
+      email: request.body.email,
+      location: request.body.location,
+      phonenumber: request.body.phonenumber,
+    };
 
     // Obtém o ID do parâmetro da rota
     const { id } = request.params;
 
     // Tenta atualizar o usuário no banco de dados pelo ID
-    const result = await User.findByIdAndUpdate(id, request.body);
-
+    const result = await User.findByIdAndUpdate(id, updatedUser);
     // Retorna uma resposta de erro se o usuário não for encontrado
     if (!result) {
       return response.status(404).json({ message: 'User not found' });
     }
-
     // Retorna uma resposta de sucesso indicando que o usuário foi atualizado com sucesso
     return response.status(200).send({ message: 'User updated successfully' });
   } catch (error) {

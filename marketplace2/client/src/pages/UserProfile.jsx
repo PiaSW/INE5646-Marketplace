@@ -1,38 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import BACKEND_URL from "../constants";
 import { getUserID } from "../hook/getUserId";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const UserProfile = () => {
   
   
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [phonenumber, setPhoneNumber] = useState('');
     const [location, setLocation] = useState('');
     const [user, setUser] = useState('');
     const userID = getUserID();
+    const navigate = useNavigate();
 
 
 
     useEffect(() => {
 
       const getUserProfile = async () => {
+
+        
+    setName(''); // Limpa o estado do nome
+    setEmail(''); // Limpa o estado do e-mail
+    setLocation('');
+    setPhoneNumber('');
+
         // Make a GET request to the user endpoint
-        try {
-          const response = await axios.get(`/${userID}`, 
-          {
-            headers: {"Content-Type": 'application/json'},
-          }
-          );
-          
-          setUser(response.data);
-          console.log(response.data);
-          
-        } catch (error) {
-          console.log('errr', error);
-        }
+          const response = await axios.get(
+            BACKEND_URL + `/auth/${userID}`,
+            {
+              headers: { 'Content-Type': 'application/json' },
+            }
+          ).then(response => {
+            console.log(response.data);
+
+            setUser(response.data);
+
+          })
+          .catch(error => {
+            alert('Usuario já existe!');
+            console.log(error);
+          });
       };
 
       // Chama a função getUserProfile quando o componente monta (componentDidMount)
@@ -40,9 +50,7 @@ export const UserProfile = () => {
 
     }, []); // O array vazio assegura que o useEffect só é chamado uma vez, quando o componente é montado
   
-    if (!user) {
-      return <div>Carregando...</div>;
-    }
+    
   
     const handleProfileUpdate = async (e) => {
       e.preventDefault();
@@ -50,18 +58,27 @@ export const UserProfile = () => {
       try {
         // Make a PUT request to the updateProfile endpoint
         
-        const response = await axios.put(`/${userID}`, { name, email, password, location, phonenumber }, 
-        {
-          headers: {"Content-Type": 'application/json'},
-        }
-        );
+        const response = await axios.put(
+          BACKEND_URL + `/auth/${userID}`,
+          { name, email, location, phonenumber },
+          {
+            headers: { 'Content-Type': 'application/json' },
+          }
+        )
+        .then(response => {
+          console.log(response);
   
-        window.location.href = '/userProfile';
-        
+          alert('Usuario atualizado com sucesso!');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  
+        navigate('/INE5646-Marketplace/userProfile');
+
       } catch (error) {
         console.log('errr', error);
         setErrMsg(error.response.data.message);
-        alert(error.response.data.message);
       }
     };
   
@@ -73,14 +90,11 @@ export const UserProfile = () => {
         <label for="username">Usuário:</label>
         <input type="text" id="username" name="username" value={user.name} onChange={(e) => setName(e.target.value)} />
 
-        <label for="password">Senha:</label>
-        <input type="password" id="password" name="password" value={user.password} onChange={(e) => setPassword(e.target.value)} />
-
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" value={user.email} onChange={(e) => setEmail(e.target.value)} />
         
         <label for="phoneNumber">Celular:</label>
-        <input type="tel" id="tel" name="phoneNumber" value={user.phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} />
+        <input type="tel" id="tel" name="phoneNumber" value={user.phonenumber} onChange={(e) => setPhoneNumber(e.target.value)} />
         
         <label for="localizacao">Localização:</label>
         <input type="text" id="location" name="location" value={user.location} onChange={(e) => setLocation(e.target.value)} />
