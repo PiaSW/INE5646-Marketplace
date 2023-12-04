@@ -10,7 +10,7 @@ export const Navbar = () => {
   const logout = () => {
     setCookies('access_token', '');
     window.localStorage.clear();
-    navigate('/auth');
+    navigate('/INE5646-Marketplace/auth');
   };
 
   return (

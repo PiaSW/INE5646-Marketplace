@@ -124,7 +124,7 @@ const Login = () => {
 
         setEmail(''); // Limpa o estado do e-mail
         setPassword(''); // Limpa o estado da senha
-        navigate('/'); // Redireciona o usuário para a página inicial
+        navigate('/INE5646-Marketplace/'); // Redireciona o usuário para a página inicial
       } catch (error) {
         console.log(error);
         alert('Password Incorreta'); // Exibe um alerta para senha incorreta
