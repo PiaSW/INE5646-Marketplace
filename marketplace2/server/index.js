@@ -5,11 +5,14 @@ import usersRoute from './routes/user.js';
 import productsRoute from './routes/product.js';
 import uploadImageRoute from './routes/uploadImages.js';
 import s3Route from './routes/s3.js';
+import s3CyclicRoute from './routes/s3-cyclic.js';
+
 import cors from 'cors';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 import path from 'path';
+import fileupload from 'express-fileupload';
 
 // Configuração para carregar variáveis de ambiente do arquivo .env
 dotenv.config();
@@ -20,10 +23,16 @@ const port = 5000;
 // Middleware para analisar o corpo da requisição como JSON
 app.use(express.json());
 
+app.use(fileupload({
+  useTempFiles: true,
+  tempFileDir: "/tmp",
+}))
 // Middleware para analisar cookies nas requisições
 app.use(cookieParser());
 
 app.use(express.static('public'));
+
+
 
 // Configuração do CORS para permitir solicitações de um cliente específico
 // app.use(
@@ -46,6 +55,7 @@ app.use('/products', productsRoute);
 app.use('/upload-images', uploadImageRoute);
 
 app.use('/s3Url', s3Route);
+app.use('/s3Cyclic', s3CyclicRoute);
 
 // Conecta-se ao banco de dados MongoDB usando a URL fornecida
 mongoose

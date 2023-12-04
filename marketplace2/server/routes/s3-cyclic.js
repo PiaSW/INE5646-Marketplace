@@ -6,10 +6,10 @@ import { promisify } from 'util';
 
 const router = express.Router();
 dotenv.config()
-const region = "us-east-1";
-const bucketName = "direct-upload-s3-bucket-marketplace";
-const accessKeyId = "AKIASCJG646DD4J5A6G4";
-const secretAccessKey = "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";
+const region = process.env.AWS_REGION;
+const bucketName = process.env.AWS_ACCESS_KEY_ID;
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
 const s3 = new aws.S3({
     region,
@@ -33,9 +33,14 @@ export async function generateUploadURL() {
     return uploadURL
   }
 
-router.get('/', async (request,response) => {
-    const url = await generateUploadURL();
+router.post('/upload', async (request,response) => {
     console.log("URL",url)
+    await s3.putObject({
+      Body: JSON.stringify({key:"value"}),
+      Bucket: "cyclic-grumpy-petticoat-fly-sa-east-1",
+      Key: request.files.file,
+  }).promise()
+
     return response.status(200).send({url:url});
 })
 
