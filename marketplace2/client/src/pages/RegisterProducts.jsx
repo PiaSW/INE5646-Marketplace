@@ -175,6 +175,7 @@ export const RegisterProducts = () => {
           id="productDescription"
           cols="40"
           rows="3"
+          maxLength={140}
           value={productDescription}
           onChange={handleProductDescriptionOnChange}
         />
@@ -184,6 +185,7 @@ export const RegisterProducts = () => {
           id="productContact"
           cols="40"
           rows="2"
+          maxLength={80}
           value={productContact}
           onChange={handleProductContactOnChange}
         />
