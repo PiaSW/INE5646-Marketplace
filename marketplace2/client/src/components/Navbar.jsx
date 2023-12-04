@@ -27,7 +27,6 @@ export const Navbar = () => {
               <Link to="/INE5646-Marketplace/">Inicio</Link>
               <Link to="/INE5646-Marketplace/products">Produtos</Link>
               <Link to="/INE5646-Marketplace/my-products">Meus Produtos</Link>
-              <Link to="/INE5646-Marketplace/contact">Contato</Link>
             </div>
             <div className="user">
               <Link to="/INE5646-Marketplace/userProfile">

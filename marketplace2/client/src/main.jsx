@@ -6,7 +6,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './AuthProvider/AuthContext';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Home } from './pages/Home.jsx';
-import { Contact } from './pages/Contact.jsx';
 import Products from './pages/Products.jsx';
 import RegisterProducts from './pages/RegisterProducts.jsx';
 import UserProfile from './pages/UserProfile.jsx';
@@ -23,10 +22,6 @@ const router = createBrowserRouter([
       {
         path: '/INE5646-Marketplace/',
         element: <Home />,
-      },
-      {
-        path: '/INE5646-Marketplace/contact',
-        element: <Contact />,
       },
       {
         path: '/INE5646-Marketplace/products',
