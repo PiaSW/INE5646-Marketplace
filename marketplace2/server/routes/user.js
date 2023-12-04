@@ -166,6 +166,10 @@ router.get('/:id', async (request, response) => {
     // Busca o usuário no banco de dados pelo ID
     const user = await User.findById(id);
 
+    if (!user) {
+      return response.status(404).json({ message: 'User not found' });
+    }
+
     // Retorna uma resposta de sucesso com os dados do usuário
     return response.status(200).json(user);
   } catch (error) {
@@ -179,9 +183,9 @@ router.get('/:id', async (request, response) => {
 router.put('/:id', async (request, response) => {
   try {
     // Verifica se todos os campos obrigatórios foram fornecidos no corpo da requisição
-    if (!request.body.name || !request.body.password) {
+    if (!request.body.name || !request.body.email || request.body.password) {
       return response.status(400).send({
-        message: 'Send all required fields: name, password',
+        message: 'Send all required fields: name, password, email',
       });
     }
 

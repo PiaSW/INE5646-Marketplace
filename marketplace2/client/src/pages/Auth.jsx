@@ -108,8 +108,7 @@ const Login = () => {
     e.preventDefault(); // Evita o comportamento padrão de envio do formulário
 
     try {
-      // Chama a função de login passando e-mail e senha
-      //login(email, password);
+
       try {
         // Faz uma chamada de API para autenticação
         const response = await axios.post(
